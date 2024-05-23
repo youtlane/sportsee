@@ -16,7 +16,6 @@ const Header = () => {
             <div className="header-logo">
                 <img src={logo} alt="Logo" className="logo" />
             </div>
-            
             <Nav items={headerItems} isHeader={true} />
         </header>
     );
