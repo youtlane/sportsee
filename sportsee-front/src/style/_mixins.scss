@@ -1,0 +1,6 @@
+/* Mixin pour le breakpoint Desktop */
+@mixin desktop {
+    @media  (min-width: $desktop){
+        @content;
+    }
+}

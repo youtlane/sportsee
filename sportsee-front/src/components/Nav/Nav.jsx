@@ -1,6 +1,4 @@
-// src/components/Nav/Nav.jsx
 import React from 'react';
-
 
 
 const Nav = ({ items, logo, isHeader }) => {
@@ -9,9 +7,9 @@ const Nav = ({ items, logo, isHeader }) => {
             {logo && isHeader && <img src={logo} alt="Logo" className="nav-logo" />}
             <ul className={isHeader ? "nav-header_list" : "nav-aside_list"}>
                 {items.map((item, index) => (
-                    <li key={index} className="nav-item">
+                    <a key={index} className="nav-item" href={item.link}>
                         {isHeader ? item.text : <img src={item.icon} alt={item.alt} className="nav-icon" />}
-                    </li>
+                    </a>
                 ))}
             </ul>
         </nav>
@@ -19,3 +17,5 @@ const Nav = ({ items, logo, isHeader }) => {
 };
 
 export default Nav;
+
+
