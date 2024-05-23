@@ -1,0 +1,16 @@
+@include desktop{
+    .header {
+        display: flex;
+        align-items: center;
+        border: 2px solid;
+        height: 91px;
+        background: black;
+        padding: 0 26px;
+        .header-logo {
+            width: 30%;
+            border: 2px solid white;
+        }
+    }
+    
+
+}

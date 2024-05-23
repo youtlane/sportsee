@@ -1,4 +1,12 @@
 @include desktop{
-    
-
+    .nav-header {
+        width: 65%;
+        border: 2px solid;
+        color: white;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-around;
+    }
 }
