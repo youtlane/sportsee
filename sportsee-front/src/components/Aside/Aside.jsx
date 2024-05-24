@@ -17,7 +17,7 @@ const Aside = () => {
     return (
         <aside className="aside">
             <Nav items={asideItems} isHeader={false} />
-            <span className="aside-text">Copiryght, SportSee 2020</span>
+            <div className="aside-text">Copiryght, SportSee 2020</div>
         </aside>
     );
 };
