@@ -1,0 +1,11 @@
+@include desktop{
+    
+    .chart-container {
+
+        margin-top: 41px;
+        &_title{
+            color: #20253A;
+            font-size: 15px;
+        }
+    }
+}

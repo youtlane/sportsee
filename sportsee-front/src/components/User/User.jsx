@@ -1,42 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { useParams , useNavigate } from 'react-router-dom';
-import { getUserData } from '../../service/DataService';
+// src/components/User/User.js
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getUserData } from '../../service/DataService'; // Assurez-vous que le chemin d'accès est correct
 
-
-const User = () => {
+const User = ({ children }) => { // Utilisation de la prop children
     const { userId } = useParams();
-    const navigate = useNavigate();
     const [user, setUser] = useState(null);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchUserData = async () => {
+        const fetchData = async () => {
             try {
-                const data = await getUserData(userId);
-                setUser(data); // Utilisez simplement `data` ici
-            } catch (err) {
-                setError(err);
+                const userData = await getUserData(userId);
+                setUser(userData);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
             }
         };
 
-        fetchUserData();
+        fetchData();
     }, [userId]);
 
-    useEffect(() => {
-        if (error) {
-            navigate('/error');
-        }
-    }, [error, navigate]);
-
-    if (!user) {
-        return <div>Chargement...</div>;
-    }
-
     return (
-        <span className="dashboard-container_name">
-            {user.userInfos.firstName} 
-        </span>
+        <div>
+            {typeof children === 'function' && user && children(user.id, user.userInfos.firstName)} {/* Vérifiez si children est une fonction */}
+        </div>
     );
 };
 
 export default User;
+
+
+
+
+
+
+
+
