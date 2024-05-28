@@ -3,7 +3,7 @@ const {
     USER_ACTIVITY,
     USER_AVERAGE_SESSIONS,
     USER_PERFORMANCE
-} = require('./data/data');
+} = require('../data/data');
 
 export const getUserData = async (userId) => {
     try {
