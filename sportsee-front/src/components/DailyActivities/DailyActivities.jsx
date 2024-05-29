@@ -1,48 +1,92 @@
-// src/components/DailyActivities/DailyActivities.js
-import React, { useEffect, useState } from 'react';
-import { getUserActivity } from '../../service/DataService';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-const DailyActivities = ({ userId }) => {
-    const [activityData, setActivityData] = useState(null);
-    const [error, setError] = useState(null);
+import React from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import {monthTickFormatter} from '../../models/Activity';
 
-    useEffect(() => {
-        const fetchActivityData = async () => {
-            try {
-                const data = await getUserActivity(userId); // Récupérer les données d'activité quotidienne pour cet utilisateur
-                setActivityData(data);
-            } catch (err) {
-                setError(err);
-            }
-        };
 
-        fetchActivityData();
-    }, [userId]);
+const CustomTooltip = ({ active, payload }) => {
+	if (active && payload) {
+		return (
+			<div className="custom-tooltip">
+				<p className="label">{`${payload[0].value}kg`}</p>
+				<p className="desc">{`${payload[1].value}Kcal`}</p>
+			</div>
+		)
+	}
 
-    if (!activityData) {
-        return <div>Chargement...</div>;
-    }
+	return null
+}
 
+function DailyActivities({ userId, activityData }) {
     return (
         <div className="chart-container">
             <h2 className="chart-container_title">Activités quotidiennes</h2>
-            <BarChart
-                width={800}
-                height={400}
-                data={activityData}
-                margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="day" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="kilogram" fill="#282D30" name="Poids (kg)" />
-                <Bar dataKey="calories" fill="#FF0101" name="Calories brûlées" />
-            </BarChart>
+            <ResponsiveContainer width="100%" height={270} className={'activityChart'}>
+                <BarChart
+                    width={500}
+                    height={300}
+                    data={activityData}
+                    margin={{
+                        top: 0,
+                        right: 10,
+                        left: 40,
+                        bottom: 20,
+                    }}
+                >
+                    <CartesianGrid strokeDasharray="3 3" stroke="#dedede" vertical={false} />
+                    <XAxis dataKey="day" tickFormatter={monthTickFormatter} stroke="#9B9EAC" tickLine={false} dy={10} />
+                    <YAxis
+                        yAxisId="left"
+                        orientation="left"
+                        stroke="#8884d8"
+                        hide={true}
+                    />
+                    <YAxis
+                        yAxisId="right"
+                        orientation="right"
+                        stroke="#9B9EAC"
+                        domain={['dataMin - 1', 'dataMax']}
+                        allowDecimals={false}
+                        axisLine={false}
+                        tickLine={false}
+                        dx={15}
+                        dy={-4}
+                    />
+                    <Tooltip allowEscapeViewBox={{ x: true, y: true }} content={<CustomTooltip />} />
+                    <Legend
+                        verticalAlign="top"
+                        align="right"
+                        height={70}
+                        iconType="circle"
+                        iconSize={10}
+                        wrapperStyle={{
+                            top: '-9%',
+                            right: '2rem',
+                            lineHeight: '40px',
+                        }}
+                        formatter={(value) => <span style={{ color: '#74798C' }}>{value}</span>}
+                    />
+                    <Bar
+                        yAxisId="right"
+                        name="Poids (kg)"
+                        dataKey="kilogram"
+                        fill="#282d30"
+                        barSize={7}
+                        radius={[50, 50, 0, 0]}
+                    />
+                    <Bar
+                        yAxisId="left"
+                        name="Calories brûlées (kCal)"
+                        dataKey="calories"
+                        fill="#eb0000"
+                        barSize={7}
+                        radius={[50, 50, 0, 0]}
+                    />
+                </BarChart>
+            </ResponsiveContainer>
         </div>
     );
-};
+}
 
 export default DailyActivities;
+

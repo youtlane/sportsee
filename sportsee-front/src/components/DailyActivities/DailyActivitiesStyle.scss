@@ -3,9 +3,35 @@
     .chart-container {
 
         margin-top: 41px;
+
+        display: flex;
+        flex-direction: column;
+        width: 832px;
+        height: 100%;
+        border-radius: 5px;
+        background-color: #FBFBFB;
+        padding-top: 25px;
+
+
+
+
         &_title{
             color: #20253A;
             font-size: 15px;
+            border: 2px solid red;
+            padding-left: 25px;
+        }
+        .recharts-default-legend {
+            
+            line-height: 26px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 32px;
+        }
+        .recharts-legend-item-text {
+            font-size: 14px;
+            border: 2px solid red;
         }
     }
 }
+
