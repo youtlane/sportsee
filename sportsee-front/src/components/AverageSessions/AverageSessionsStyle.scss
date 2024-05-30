@@ -1,23 +1,26 @@
-.average-sessions-container {
-    background-color: red;
-    border-radius: 5px;
-    padding: 20px;
-    position: relative;
+@include desktop {
+    .average-sessions-container {
+        background-color: red;
+        border-radius: 5px;
+        position: relative;
+        width: 258px;
+        height: 263px;
+    }
+    
+    .average-sessions-title {
+        margin-top: 10px;
+        margin-left: 34px;
+        position: absolute;
+        color: white;
+        font-size: 15px;
+        opacity: 0.5;
+        width: 147px;
+    }
+    .label-time {
+        color: white;
+    }
+
+    
 }
 
-.average-sessions-title {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-}
 
-.custom-tooltip {
-    background: white;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: left;
-}
