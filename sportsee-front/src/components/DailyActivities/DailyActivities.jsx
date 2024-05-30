@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import {monthTickFormatter} from '../../models/Activity';
+
 
 
 const CustomTooltip = ({ active, payload }) => {
@@ -16,6 +16,14 @@ const CustomTooltip = ({ active, payload }) => {
 
 	return null
 }
+
+// Je crée une fonction qui va formatter les dates en fonction du format que je souhaite pour le graphique
+export const monthTickFormatter = (tick) => {
+	const date = new Date(tick)
+
+	return date.getDate()
+}
+
 
 function DailyActivities({ userId, activityData }) {
     return (
