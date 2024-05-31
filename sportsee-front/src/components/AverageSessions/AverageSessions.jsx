@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer, Rectangle } from 'recharts';
+import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer, Rectangle, YAxis } from 'recharts';
 
 const AverageSessions = ({ averageSessionsData }) => {
     const dayFormatter = (tick) => {
@@ -30,9 +30,8 @@ const AverageSessions = ({ averageSessionsData }) => {
             <h2 className="average-sessions-title">Durée moyenne des sessions</h2>
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart
-                    
                     data={averageSessionsData}
-                    margin={{ top: 50, right: 0, left: 0, bottom: 10 }}
+                    margin={{ top: 50, right: 0, left: 0, bottom: 29 }} // Adjusted bottom margin
                 >
                     <defs>
                         <linearGradient
@@ -50,14 +49,16 @@ const AverageSessions = ({ averageSessionsData }) => {
                     <XAxis
                         dataKey="day"
                         stroke="#ffffff81"
-                        padding={{ left: 5 , right: 5}}
+                        padding={{ left: 5, right: 5 }}
                         axisLine={false}
                         tickLine={false}
                         tick={{ fill: 'white' }}
                         tickFormatter={dayFormatter}
-                        interval={0}//Cela garantit que chaque point de données de 
-                                    //l'axe X est rendu, ce qui peut aider à forcer 
-                                    //l'affichage du premier jour correctement.
+                        interval={0}
+                    />
+                    <YAxis
+                        hide
+                        domain={['dataMin - 19', 'dataMax']} // Adjust the domain to shift the curve up
                     />
                     <Tooltip content={<CustomTooltip />} cursor={<CustomizedCursor />} />
                     <Line
