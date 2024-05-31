@@ -25,13 +25,28 @@ const AverageSessions = ({ averageSessionsData }) => {
         return <Rectangle fill="#000000" opacity={0.1} x={points[0].x} width={258} height={263} />;
     };
 
+    // Custom tick component to add a class and styles
+    const CustomTick = ({ x, y, payload }) => {
+        return (
+            <text
+                x={x}
+                y={y + 15}
+                textAnchor="middle"
+                className="custom-tick"
+                fill="white"
+            >
+                {dayFormatter(payload.value)}
+            </text>
+        );
+    };
+
     return (
         <div className="average-sessions-container">
             <h2 className="average-sessions-title">Durée moyenne des sessions</h2>
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart
                     data={averageSessionsData}
-                    margin={{ top: 50, right: 0, left: 0, bottom: 29 }} // Adjusted bottom margin
+                    margin={{ top: 50, right: 0, left: 0, bottom: 29 }} // No side margins to extend the curve
                 >
                     <defs>
                         <linearGradient
@@ -49,11 +64,10 @@ const AverageSessions = ({ averageSessionsData }) => {
                     <XAxis
                         dataKey="day"
                         stroke="#ffffff81"
-                        padding={{ left: 5, right: 5 }}
+                        padding={{ left: 0, right: 0 }} // No padding to keep the curve full width
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fill: 'white' }}
-                        tickFormatter={dayFormatter}
+                        tick={<CustomTick />} // Custom tick component
                         interval={0}
                     />
                     <YAxis
