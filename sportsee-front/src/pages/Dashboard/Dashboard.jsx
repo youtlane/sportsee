@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getUserData, getUserActivity, getUserAverageSessions } from '../../service/DataService';
+import { getUserData, getUserActivity, getUserAverageSessions ,getUserPerformance } from '../../service/DataService';
 import DailyActivities from '../../components/DailyActivities/DailyActivities';
 import AverageSessions from '../../components/AverageSessions/AverageSessions';
+import RadarPerformance from '../../components/RadarPerformance/RadarPerformance'
 
 const Dashboard = () => {
     const { userId } = useParams();
@@ -10,6 +11,7 @@ const Dashboard = () => {
     const [user, setUser] = useState(null);
     const [activityData, setActivityData] = useState([]);
     const [averageSessionsData, setAverageSessionsData] = useState([]);
+    const [userPerformance, setUserPerformance] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -39,10 +41,22 @@ const Dashboard = () => {
                 setError(err);
             }
         };
+        const fetchUserPerformanceData = async () => {
+            try {
+                const data = await getUserPerformance(userId);
+                setUserPerformance(data);
+            } catch (err) {
+                setError(err);
+            }
+        };
+        
+        
 
         fetchUserData();
         fetchActivityData();
         fetchAverageSessionsData();
+        fetchUserPerformanceData();
+    
     }, [userId]);
 
     useEffect(() => {
@@ -63,6 +77,11 @@ const Dashboard = () => {
             <p className="dashboard-container_text">Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
             <DailyActivities userId={userId} activityData={activityData} />
             <AverageSessions averageSessionsData={averageSessionsData} />
+            <RadarPerformance data={userPerformance} />
+
+            
+
+
         </main>
     );
 };
