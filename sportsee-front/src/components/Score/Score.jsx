@@ -2,48 +2,41 @@ import React from 'react';
 import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts';
 
 const Score = ({ score }) => {
-  
-
     const data = [
         {
             name: 'Score',
             value: score, // Utiliser la valeur calculée
             fill: '#FF0000' // Utiliser la couleur calculée
-            
         }
     ];
-    const endAngle = (score * 100 * 450) / 100 ;
+    const endAngle = (score * 100 * 450) / 100;
     return (
-        <div style={{ 
-            width: '258px', 
-            height: '263px', 
-            borderRadius: '5px', 
-            background: '#FBFBFB', 
-            boxShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.02)', 
-            display: 'flex', 
-            justifyContent: 'center', 
-            alignItems: 'center', 
-            position: 'relative' 
-        }}>
+        <div
+            style={{
+                width: '258px',
+                height: '263px',
+                borderRadius: '5px',
+                background: '#FBFBFB',
+                boxShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.02)',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                position: 'relative',
+                border: '2px solid'
+            }}
+        >
             <ResponsiveContainer width="100%" height="100%">
-                <RadialBarChart 
-                    cx="50%" 
-                    cy="50%" 
-                    innerRadius="80%" 
-                    outerRadius="80%" 
-                    barSize={10}      
-                  
+                <RadialBarChart
+                    cx="50%"
+                    cy="50%"
+                    innerRadius="80%"
+                    outerRadius="80%"
+                    barSize={10}
                     data={data}
-                    startAngle={90}
-					endAngle={endAngle}
+                    startAngle={0}
+                    endAngle={endAngle}
                 >
-                    <RadialBar
-            minAngle={15}
-            label={{ position: 'insideStart', fill: '#fff' }}
-            background
-            clockWise
-            dataKey="value"
-          />
+                    <RadialBar minAngle={15} label={{ position: 'insideStart', fill: '#fff' }} background clockWise={false} dataKey="value" />
                 </RadialBarChart>
             </ResponsiveContainer>
             <div style={{ position: 'absolute', textAlign: 'center' }}>
