@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getUserData, getUserActivity, getUserAverageSessions ,getUserPerformance } from '../../service/DataService';
+import { getUserData, getUserActivity, getUserAverageSessions, getUserPerformance } from '../../service/DataService';
 import DailyActivities from '../../components/DailyActivities/DailyActivities';
 import AverageSessions from '../../components/AverageSessions/AverageSessions';
 import RadarPerformance from '../../components/RadarPerformance/RadarPerformance';
 import Score from '../../components/Score/Score';
-
-
 
 const Dashboard = () => {
     const { userId } = useParams();
@@ -19,66 +17,25 @@ const Dashboard = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const data = await getUserData(userId);
-                setUser(data);
-            } catch (err) {
-                setError(err);
-            }
-        };
-
-        const fetchActivityData = async () => {
-            try {
-                const data = await getUserActivity(userId);
-                setActivityData(data);
-            } catch (err) {
-                setError(err);
-            }
-        };
-
-        const fetchAverageSessionsData = async () => {
-            try {
-                const data = await getUserAverageSessions(userId);
-                setAverageSessionsData(data);
-            } catch (err) {
-                setError(err);
-            }
-        };
-        
-        const fetchUserPerformanceData = async () => {
-            try {
-                const data = await getUserPerformance(userId);
-                setUserPerformance(data);
-            } catch (err) {
-                setError(err);
-            }
-        };
-
-        const fetchScore = async () => {
+        const fetchData = async () => {
             try {
                 const userData = await getUserData(userId);
+                setUser(userData);
+                const activityData = await getUserActivity(userId);
+                setActivityData(activityData);
+                const averageSessionsData = await getUserAverageSessions(userId);
+                setAverageSessionsData(averageSessionsData);
+                const userPerformanceData = await getUserPerformance(userId);
+                setUserPerformance(userPerformanceData);
                 setScore(userData.todayScore || userData.score);
-            
             } catch (error) {
                 setError(error);
-            
+                navigate('/error');
             }
         };
 
-        fetchUserData();
-        fetchActivityData();
-        fetchAverageSessionsData();
-        fetchUserPerformanceData();
-        fetchScore();
-
-    }, [userId]);
-
-    useEffect(() => {
-        if (error) {
-            navigate('/error');
-        }
-    }, [error, navigate]);
+        fetchData();
+    }, [userId, navigate]);
 
     if (!user) {
         return <div>Chargement...</div>;
@@ -91,13 +48,11 @@ const Dashboard = () => {
             </h1>
             <p className="dashboard-container_text">Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
             <DailyActivities userId={userId} activityData={activityData} />
-            <AverageSessions averageSessionsData={averageSessionsData} />
-            <RadarPerformance data={userPerformance} />
-            <Score score={score} />
-            
-            
-
-
+            <div style={{ display: 'flex', gap: '30px' , marginTop: '28px' }}>
+                <AverageSessions averageSessionsData={averageSessionsData} />
+                <RadarPerformance data={userPerformance} />
+                <Score score={score} />
+            </div>
         </main>
     );
 };
