@@ -3,7 +3,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getUserData, getUserActivity, getUserAverageSessions ,getUserPerformance } from '../../service/DataService';
 import DailyActivities from '../../components/DailyActivities/DailyActivities';
 import AverageSessions from '../../components/AverageSessions/AverageSessions';
-import RadarPerformance from '../../components/RadarPerformance/RadarPerformance'
+import RadarPerformance from '../../components/RadarPerformance/RadarPerformance';
+import Score from '../../components/Score/Score';
+
+
 
 const Dashboard = () => {
     const { userId } = useParams();
@@ -12,6 +15,7 @@ const Dashboard = () => {
     const [activityData, setActivityData] = useState([]);
     const [averageSessionsData, setAverageSessionsData] = useState([]);
     const [userPerformance, setUserPerformance] = useState([]);
+    const [score, setScore] = useState(null);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -41,6 +45,7 @@ const Dashboard = () => {
                 setError(err);
             }
         };
+        
         const fetchUserPerformanceData = async () => {
             try {
                 const data = await getUserPerformance(userId);
@@ -49,14 +54,24 @@ const Dashboard = () => {
                 setError(err);
             }
         };
-        
-        
+
+        const fetchScore = async () => {
+            try {
+                const userData = await getUserData(userId);
+                setScore(userData.todayScore || userData.score);
+            
+            } catch (error) {
+                setError(error);
+            
+            }
+        };
 
         fetchUserData();
         fetchActivityData();
         fetchAverageSessionsData();
         fetchUserPerformanceData();
-    
+        fetchScore();
+
     }, [userId]);
 
     useEffect(() => {
@@ -78,7 +93,8 @@ const Dashboard = () => {
             <DailyActivities userId={userId} activityData={activityData} />
             <AverageSessions averageSessionsData={averageSessionsData} />
             <RadarPerformance data={userPerformance} />
-
+            <Score score={score} />
+            
             
 
 
