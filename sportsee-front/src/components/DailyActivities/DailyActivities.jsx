@@ -17,10 +17,9 @@ const CustomTooltip = ({ active, payload }) => {
 	return null
 }
 
-// Je crée une fonction qui va formatter les dates en fonction du format que je souhaite pour le graphique
+// Je crée une fonction qui va formatter les dates en fonction du format 
 export const monthTickFormatter = (tick) => {
 	const date = new Date(tick)
-
 	return date.getDate()
 }
 
@@ -46,7 +45,6 @@ function DailyActivities({ userId, activityData }) {
                     <YAxis
                         yAxisId="left"
                         orientation="left"
-                        stroke="#8884d8"
                         hide={true}
                     />
                     <YAxis
@@ -78,7 +76,7 @@ function DailyActivities({ userId, activityData }) {
                         yAxisId="right"
                         name="Poids (kg)"
                         dataKey="kilogram"
-                        fill="#282d30"
+                        fill="#282d30" //blue color
                         barSize={7}
                         radius={[50, 50, 0, 0]}
                     />
@@ -86,7 +84,7 @@ function DailyActivities({ userId, activityData }) {
                         yAxisId="left"
                         name="Calories brûlées (kCal)"
                         dataKey="calories"
-                        fill="#eb0000"
+                        fill="#eb0000" //red color
                         barSize={7}
                         radius={[50, 50, 0, 0]}
                     />

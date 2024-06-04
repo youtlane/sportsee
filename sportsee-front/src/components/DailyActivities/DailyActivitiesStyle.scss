@@ -1,9 +1,6 @@
 @include desktop{
-    
     .chart-container {
-
         margin-top: 41px;
-
         display: flex;
         flex-direction: column;
         width: 832px;
@@ -11,14 +8,9 @@
         border-radius: 5px;
         background-color: #FBFBFB;
         padding-top: 25px;
-
-
-
-
         &_title{
             color: #20253A;
             font-size: 15px;
-            border: 2px solid red;
             padding-left: 25px;
         }
         .recharts-default-legend {
@@ -30,7 +22,17 @@
         }
         .recharts-legend-item-text {
             font-size: 14px;
-            border: 2px solid red;
+        }
+        .custom-tooltip{
+            background: #E60000;
+            width: 39px;
+            height: 63px;
+            font-size: 7px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            text-align: center;
         }
     }
 }

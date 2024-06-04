@@ -33,7 +33,7 @@ const Score = ({ score }) => {
                     outerRadius="80%"
                     barSize={10}
                     data={data}
-                    startAngle={0}
+                    startAngle={180}
                     endAngle={endAngle}
                 >
                     <RadialBar minAngle={15} label={{ position: 'insideStart', fill: '#fff' }} background clockWise={false} dataKey="value" />
