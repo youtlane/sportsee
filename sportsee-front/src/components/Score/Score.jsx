@@ -5,11 +5,12 @@ const Score = ({ score }) => {
     const data = [
         {
             name: 'Score',
-            value: score, // Utiliser la valeur calculée
-            fill: '#FF0000' // Utiliser la couleur calculée
+            value: score * 100, 
+            fill: '#FF0000' 
         }
     ];
-    const endAngle = (score * 100 * 450) / 100;
+    const endAngle = score * 360; 
+
     return (
         <div
             style={{
@@ -22,7 +23,7 @@ const Score = ({ score }) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 position: 'relative',
-                border: '2px solid'
+                border: '2px solid #E0E0E0'
             }}
         >
             <ResponsiveContainer width="100%" height="100%">
@@ -33,16 +34,22 @@ const Score = ({ score }) => {
                     outerRadius="80%"
                     barSize={10}
                     data={data}
-                    startAngle={180}
-                    endAngle={endAngle}
+                    startAngle={90}
+                    endAngle={90 + endAngle}
                 >
-                    <RadialBar minAngle={15} label={{ position: 'insideStart', fill: '#fff' }} background clockWise={false} dataKey="value" />
+                    <RadialBar
+                        minAngle={15}
+                        label={{ position: 'insideStart', fill: '#fff' }}
+                        background
+                        clockWise
+                        dataKey="value"
+                    />
                 </RadialBarChart>
             </ResponsiveContainer>
-            <div style={{ position: 'absolute', textAlign: 'center' }}>
-                <p style={{ fontSize: '18px', margin: 0, color: '#000' }}>Score</p>
-                <p style={{ fontSize: '24px', fontWeight: 'bold', margin: 0, color: '#000' }}>{`${score * 100}%`}</p>
-                <p style={{ fontSize: '16px', margin: 0, color: '#000' }}>de votre objectif</p>
+            <div style={{ position: 'absolute', textAlign: 'center' , border:'2px solid ', width:'90px', display:'flex', alignItems:'center' , flexDirection:'column', gap:'20px'}}>
+                
+                <p style={{ fontSize: '26px', fontWeight: 'bold', margin: 0, color: '#282D30;' }}>{`${(score * 100)}%`}</p>
+                <p style={{ fontSize: '16px', margin: 0, color: '#74798C' }}>de votre objectif</p>
             </div>
         </div>
     );
