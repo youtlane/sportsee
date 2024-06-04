@@ -32,24 +32,40 @@ const Score = ({ score }) => {
                     cy="50%"
                     innerRadius="80%"
                     outerRadius="80%"
-                    barSize={10}
+                    barSize={20}
                     data={data}
                     startAngle={90}
                     endAngle={90 + endAngle}
                 >
                     <RadialBar
                         minAngle={15}
-                        label={{ position: 'insideStart', fill: '#fff' }}
+                        
                         background
-                        clockWise
                         dataKey="value"
                     />
                 </RadialBarChart>
             </ResponsiveContainer>
-            <div style={{ position: 'absolute', textAlign: 'center' , border:'2px solid ', width:'90px', display:'flex', alignItems:'center' , flexDirection:'column', gap:'20px'}}>
+            {/* Cercle intérieur blanc */}
+            <div
+                style={{
+                    position: 'absolute',
+                    width: '190px', // Ajuster cette taille en fonction de l'innerRadius
+                    height: '190px', // Ajuster cette taille en fonction de l'innerRadius
+                    borderRadius: '100%',
+                    background: '#FFFFFF'
+                }}
+            />
+            <div style={{   
+                position: 'absolute',
+                textAlign: 'center',
+                width: '90px',
+                display: 'flex',
+                alignItems: 'center',
+                flexDirection: 'column',
                 
-                <p style={{ fontSize: '26px', fontWeight: 'bold', margin: 0, color: '#282D30;' }}>{`${(score * 100)}%`}</p>
-                <p style={{ fontSize: '16px', margin: 0, color: '#74798C' }}>de votre objectif</p>
+            }}>
+                <p style={{ fontSize: '26px', fontWeight: 'bold', margin: 0, color: '#282D30' }}>{`${(score * 100)}%`}</p>
+                <p style={{ fontSize: '16px', margin: 0, color: '#74798C' , lineHeight:'26px' , fontWeight:'500'}}>de votre objectif</p>
             </div>
         </div>
     );
