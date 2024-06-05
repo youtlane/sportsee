@@ -36,6 +36,21 @@
         gap: 30px;
         margin-top:152px ;
     }
+    .card {
+        opacity: 0; /* Initiallement invisible */
+        animation: fadeIn 0.5s ease forwards; /* Animation de fondu */
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0; /* Commencez avec une opacité de 0 */
+            transform: translateY(20px); /* Faites glisser l'élément vers le bas */
+        }
+        to {
+            opacity: 1; /* Finissez avec une opacité de 1 */
+            transform: translateY(0); /* Arrêtez le déplacement */
+        }
+    }
 }
 
 

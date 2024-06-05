@@ -9,7 +9,6 @@ import Cards from '../../components/Cards/Cards';
 import { ICONS } from '../../Utiles/IconsCards';
 import { LABELS } from '../../Utiles/IconsCards';
 
-
 const Dashboard = () => {
     const { userId } = useParams();
     const navigate = useNavigate();
@@ -19,6 +18,8 @@ const Dashboard = () => {
     const [userPerformance, setUserPerformance] = useState([]);
     const [score, setScore] = useState(null);
     const [error, setError] = useState(null);
+    
+    const [isAnimationActive, setIsAnimationActive] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,6 +33,13 @@ const Dashboard = () => {
                 const userPerformanceData = await getUserPerformance(userId);
                 setUserPerformance(userPerformanceData);
                 setScore(userData.todayScore || userData.score);
+
+                // Activer l'animation après un léger délai initial
+                const animationTimeout = setTimeout(() => {
+                    setIsAnimationActive(true);
+                }, 500);
+                return () => clearTimeout(animationTimeout);
+        
             } catch (error) {
                 setError(error);
                 navigate('/error');
@@ -64,13 +72,14 @@ const Dashboard = () => {
                 </div>
             </div>
             <div className="cards-area">
-                {keyDataEntries.map(([key, value]) => (
-                    <Cards
-                        key={key}
-                        iconSrc={ICONS[key]}
-                        title={`${value} ${key === 'calorieCount' ? 'kcal' : 'g'}`}
-                        text={LABELS[key]}
-                    />
+                {keyDataEntries.map(([key, value], index) => (
+                    <div key={key} className="card" style={{ animationDelay: `${index * 100}ms` }}>
+                        <Cards
+                            iconSrc={ICONS[key]}
+                            title={`${value} ${key === 'calorieCount' ? 'kcal' : 'g'}`}
+                            text={LABELS[key]}
+                        />
+                    </div>
                 ))}
             </div>
         </main>
