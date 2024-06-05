@@ -1,23 +1,24 @@
-@include desktop {
+
     .average-sessions-container {
-        background-color: red;
+        background-color: $red;
         border-radius: 5px;
         position: relative;
         width: 258px;
         height: 263px;
+        box-shadow: $chart-shadow;
     }
     
     .average-sessions-title {
         margin-top: 10px;
         margin-left: 34px;
         position: absolute;
-        color: white;
+        color: $white;
         font-size: 15px;
         opacity: 0.5;
         width: 147px;
     }
     .label-time {
-        color: white;
+        color: $white;
     }
     .custom-tick {
         transform: translate(20px, 0);
@@ -25,6 +26,6 @@
     }
     
     
-}
+
 
 

@@ -68,7 +68,7 @@ const Dashboard = () => {
         <main className="dashboard-container" style={{ display: 'flex', gap: '31px' }}>
             <div>
                 <h1>
-                    Bonjour <span style={{ color: 'red' }}>{user.userInfos.firstName}</span>
+                    Bonjour <span style={{ color: '#FF0101' }}>{user.userInfos.firstName}</span>
                 </h1>
                 <p className="dashboard-container_text">Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
                 <DailyActivities userId={userId} activityData={activityData} />

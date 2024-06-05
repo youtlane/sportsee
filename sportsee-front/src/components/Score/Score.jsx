@@ -23,7 +23,6 @@ const Score = ({ score }) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 position: 'relative',
-                border: '2px solid #E0E0E0'
             }}
         >
             <ResponsiveContainer width="100%" height="100%">

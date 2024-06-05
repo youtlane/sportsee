@@ -1,6 +1,6 @@
-@include desktop{
+
     .aside {
-        background: black;
+        background: $black;
         width: 117px;
         display: flex;
         flex-direction: column;
@@ -9,10 +9,11 @@
         position: fixed;
         bottom: 0;
         top: 0;
+        box-shadow: $shadow;
         
     }
     .aside-text {
-        color: white;
+        color: $white;
         text-align: left;
         transform: rotate(-90deg);
         font-size: 12px;
@@ -24,4 +25,4 @@
         gap:20px;
     }
 
-}
+
