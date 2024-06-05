@@ -1,10 +1,10 @@
-// src/components/Aside/Aside.jsx
+
 import React from 'react';
 import Nav from '../Nav/Nav';
-import yogaIcon from '../../assets/icons/yoga.svg'; // Importation de l'icône
-import natationIcon  from '../../assets/icons/natation.svg'; // Importation de l'icône
-import bicycleIcon  from '../../assets/icons/bicycle.svg'; // Importation de l'icône
-import muscuIcon  from '../../assets/icons/musculation.svg'; // Importation de l'icône
+import yogaIcon from '../../assets/icons/yoga.svg'; 
+import natationIcon  from '../../assets/icons/natation.svg'; 
+import bicycleIcon  from '../../assets/icons/bicycle.svg'; 
+import muscuIcon  from '../../assets/icons/musculation.svg'; 
 
 const Aside = () => {
     const asideItems = [

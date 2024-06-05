@@ -45,7 +45,6 @@ const Score = ({ score }) => {
                     />
                 </RadialBarChart>
             </ResponsiveContainer>
-            {/* Cercle intérieur blanc */}
             <div
                 style={{
                     position: 'absolute',

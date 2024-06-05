@@ -2,7 +2,7 @@
 import * as api from './Api';
 import * as mockedData from './GetmockData';
 
-const USE_MOCKED_DATA = true; // Définissez ce booléen pour utiliser les données simulées ou l'API
+const USE_MOCKED_DATA = true; //  booléen pour utiliser les données simulées ou l'API
 
 export const getUserData = async (userId) => {
     if (USE_MOCKED_DATA) {

@@ -24,7 +24,6 @@ export const getUserActivity = async (userId) => {
             throw new Error('User activity not found');
         }
         const activityData = userActivity.sessions;
-        console.log('Données d\'activité quotidienne :', activityData);
         return activityData;
     } catch (error) {
         throw error;
@@ -38,7 +37,6 @@ export const getUserAverageSessions = async (userId) => {
             throw new Error('User average sessions not found');
         }
         const averageSessionsData = userAverageSessions.sessions;
-        console.log('Durée moyenne des sessions :', averageSessionsData);
         return averageSessionsData;
     } catch (error) {
         throw error;
@@ -52,7 +50,6 @@ export const getUserPerformance = async (userId) => {
             throw new Error('User performance not found');
         }
         const performanceData = userPerformance.data;
-        console.log('Informations sur les types d\'activité :', performanceData);
         return performanceData;
     } catch (error) {
         throw error;
