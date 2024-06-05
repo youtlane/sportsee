@@ -1,0 +1,10 @@
+.radar-container {
+    width: 258px;
+    height: 263px;
+    border-radius: 5px;
+    background: $dark-blue;
+    box-shadow: $chart-shadow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -65,20 +65,20 @@ const Dashboard = () => {
     }
     const keyDataEntries = Object.entries(user.keyData);
     return (
-        <main className="dashboard-container" style={{ display: 'flex', gap: '31px' }}>
+        <main className="dashboard-container">
             <div>
                 <h1>
-                    Bonjour <span style={{ color: '#FF0101' }}>{user.userInfos.firstName}</span>
+                    Bonjour <span className="name">{user.userInfos.firstName}</span>
                 </h1>
                 <p className="dashboard-container_text">Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
                 <DailyActivities userId={userId} activityData={activityData} />
-                <div style={{ display: 'flex', gap: '30px', marginTop: '28px' }}>
+                <div className="container-three-charts">
                     <AverageSessions averageSessionsData={averageSessionsData} />
                     <RadarPerformance data={userPerformance} />
                     <Score score={score} />
                 </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', marginTop: '152px' }}>
+            <div className="cards-area">
                 {keyDataEntries.map(([key, value]) => (
                     <Cards
                         key={key}

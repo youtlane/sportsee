@@ -1,5 +1,4 @@
 @import './variables';
-@import'./mixins';
 @import'./base';
 @import'../components/Header/HeaderStyle.scss';
 @import'../components/Nav/NavStyle.scss';
@@ -7,3 +6,5 @@
 @import'../components/DailyActivities/DailyActivitiesStyle.scss';
 @import'../components/AverageSessions/AverageSessionsStyle.scss';
 @import'../components/Cards/CardsStyle.scss';
+@import'../components/Score/ScoreStyle.scss';
+@import'../components/RadarPerformance/RadarStyle.scss';

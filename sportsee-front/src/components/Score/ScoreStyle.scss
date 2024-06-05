@@ -1,0 +1,45 @@
+.score-container {
+    width: 258px;
+    height: 263px;
+    border-radius: 5px;
+    background: $bg-white;
+    box-shadow: $chart-shadow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.inner-circle {
+    position: absolute;
+    width: 190px; /* Ajuster cette taille en fonction de l'innerRadius */
+    height: 190px; /* Ajuster cette taille en fonction de l'innerRadius */
+    border-radius: 100%;
+    background: $white;
+}
+
+.text-center {
+    position: absolute;
+    text-align: center;
+    width: 90px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.text-center p {
+    margin: 0;
+}
+
+.text-center .percentage {
+    font-size: 26px;
+    font-weight: bold;
+    color: $dark-blue;
+}
+
+.text-center .goal {
+    font-size: 16px;
+    color: $soft-grey;
+    line-height: 26px;
+    font-weight: 500;
+}
