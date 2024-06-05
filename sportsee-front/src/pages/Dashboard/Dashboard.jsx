@@ -6,27 +6,8 @@ import AverageSessions from '../../components/AverageSessions/AverageSessions';
 import RadarPerformance from '../../components/RadarPerformance/RadarPerformance';
 import Score from '../../components/Score/Score';
 import Cards from '../../components/Cards/Cards'; 
-import calorieIcon from '../../assets/calories-icon.png'; 
-import proteinIcon from '../../assets/protein-icon.png';
-import carbohydrateIcon from '../../assets/carbs-icon.png';
-import lipidIcon from '../../assets/fat-icon.png';
-
-
-
-const ICONS = {
-    calorieCount: calorieIcon,
-    proteinCount: proteinIcon,
-    carbohydrateCount: carbohydrateIcon,
-    lipidCount: lipidIcon
-};
-
-const LABELS = {
-    calorieCount: 'Calories',
-    proteinCount: 'Protéines',
-    carbohydrateCount: 'Glucides',
-    lipidCount: 'Lipides'
-};
-
+import { ICONS } from '../../Utiles/IconsCards';
+import { LABELS } from '../../Utiles/IconsCards';
 
 
 const Dashboard = () => {
@@ -63,12 +44,16 @@ const Dashboard = () => {
     if (!user) {
         return <div>Chargement...</div>;
     }
-    const keyDataEntries = Object.entries(user.keyData);
+
+    // Destructuration des données de l'utilisateur
+    const { userInfos, keyData } = user;
+    const keyDataEntries = Object.entries(keyData);
+
     return (
         <main className="dashboard-container">
             <div>
                 <h1>
-                    Bonjour <span className="name">{user.userInfos.firstName}</span>
+                    Bonjour <span className="name">{userInfos.firstName}</span>
                 </h1>
                 <p className="dashboard-container_text">Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
                 <DailyActivities userId={userId} activityData={activityData} />
@@ -90,7 +75,6 @@ const Dashboard = () => {
             </div>
         </main>
     );
-    
 };
 
 export default Dashboard;
