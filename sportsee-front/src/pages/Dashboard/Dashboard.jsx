@@ -5,6 +5,29 @@ import DailyActivities from '../../components/DailyActivities/DailyActivities';
 import AverageSessions from '../../components/AverageSessions/AverageSessions';
 import RadarPerformance from '../../components/RadarPerformance/RadarPerformance';
 import Score from '../../components/Score/Score';
+import Cards from '../../components/Cards/Cards'; // Assurez-vous que le chemin est correct
+import calorieIcon from '../../assets/calories-icon.png'; // Mettez à jour les chemins d'accès
+import proteinIcon from '../../assets/protein-icon.png';
+import carbohydrateIcon from '../../assets/carbs-icon.png';
+import lipidIcon from '../../assets/fat-icon.png';
+
+
+
+const ICONS = {
+    calorieCount: calorieIcon,
+    proteinCount: proteinIcon,
+    carbohydrateCount: carbohydrateIcon,
+    lipidCount: lipidIcon
+};
+
+const LABELS = {
+    calorieCount: 'Calories',
+    proteinCount: 'Protéines',
+    carbohydrateCount: 'Glucides',
+    lipidCount: 'Lipides'
+};
+
+
 
 const Dashboard = () => {
     const { userId } = useParams();
@@ -40,21 +63,34 @@ const Dashboard = () => {
     if (!user) {
         return <div>Chargement...</div>;
     }
-
+    const keyDataEntries = Object.entries(user.keyData);
     return (
-        <main className="dashboard-container">
-            <h1>
-                Bonjour <span style={{ color: 'red' }}>{user.userInfos.firstName}</span>
-            </h1>
-            <p className="dashboard-container_text">Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
-            <DailyActivities userId={userId} activityData={activityData} />
-            <div style={{ display: 'flex', gap: '30px' , marginTop: '28px' }}>
-                <AverageSessions averageSessionsData={averageSessionsData} />
-                <RadarPerformance data={userPerformance} />
-                <Score score={score} />
+        <main className="dashboard-container" style={{ display: 'flex', gap: '31px' }}>
+            <div>
+                <h1>
+                    Bonjour <span style={{ color: 'red' }}>{user.userInfos.firstName}</span>
+                </h1>
+                <p className="dashboard-container_text">Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+                <DailyActivities userId={userId} activityData={activityData} />
+                <div style={{ display: 'flex', gap: '30px', marginTop: '28px' }}>
+                    <AverageSessions averageSessionsData={averageSessionsData} />
+                    <RadarPerformance data={userPerformance} />
+                    <Score score={score} />
+                </div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', marginTop: '152px' }}>
+                {keyDataEntries.map(([key, value]) => (
+                    <Cards
+                        key={key}
+                        iconSrc={ICONS[key]}
+                        title={`${value} ${key === 'calorieCount' ? 'kcal' : 'g'}`}
+                        text={LABELS[key]}
+                    />
+                ))}
             </div>
         </main>
     );
+    
 };
 
 export default Dashboard;

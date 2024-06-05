@@ -46,7 +46,7 @@ const AverageSessions = ({ averageSessionsData }) => {
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart
                     data={averageSessionsData}
-                    margin={{ top: 50, right: 0, left: 0, bottom: 29 }} // No side margins to extend the curve
+                    margin={{ top: 80, right: 0, left: 0, bottom: 29 }} // No side margins to extend the curve
                 >
                     <defs>
                         <linearGradient
