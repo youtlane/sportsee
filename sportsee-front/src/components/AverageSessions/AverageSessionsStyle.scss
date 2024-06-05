@@ -22,8 +22,18 @@
     }
     .custom-tick {
         transform: translate(20px, 0);
-        
     }
+    .label-time{
+        width: 39px;
+        height: 25px;
+        background-color: $white;
+        font-size: 8px;
+        font-weight: 500;
+        color: $black;
+        display: flex;
+        justify-content: center;  
+        align-items: center;
+}
     
     
 
